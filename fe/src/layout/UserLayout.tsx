@@ -18,7 +18,7 @@ const UserLayout = () => {
         <div>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/skill' element={<SkillPage />} />
+            <Route path='/skills' element={<SkillPage />} />
             <Route path='/classroom' element={<ClassroomPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/leaderboard' element={<LeaderboardPage />} />

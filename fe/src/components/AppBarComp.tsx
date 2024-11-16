@@ -22,8 +22,8 @@ interface Props {
 const drawerWidth = 180;
 const navItems = [
     {
-        link: "/skill",
-        name: "Skill"
+        link: "/skills",
+        name: "Skills"
     },
     {
         link: "/classroom",

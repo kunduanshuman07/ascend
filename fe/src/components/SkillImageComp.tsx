@@ -2,8 +2,8 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 interface SkillImageCompProps {
-    title: String,
-    imageUrl: String
+    title: String;
+    imageUrl: String;
 }
 
 const SkillImageComp = (props: SkillImageCompProps) => {
