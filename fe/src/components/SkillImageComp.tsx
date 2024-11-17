@@ -11,7 +11,7 @@ const SkillImageComp = (props: SkillImageCompProps) => {
         <Box
             sx={{
                 position: "relative",
-                height: "250px",
+                height: "200px",
                 backgroundImage: `url(${props.imageUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -43,7 +43,7 @@ const SkillImageComp = (props: SkillImageCompProps) => {
                 }}
             />
             <Typography
-                variant="h6"
+                variant="h5"
                 sx={{
                     position: "absolute",
                     top: "16px",
