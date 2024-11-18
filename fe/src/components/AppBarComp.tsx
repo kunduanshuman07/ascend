@@ -49,7 +49,6 @@ const AppBarComp = (props: Props) => {
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -81,9 +80,9 @@ const AppBarComp = (props: Props) => {
               sx={{
                 textAlign: "center",
                 fontSize: "10px",
-                color: location.pathname === item.link ? 'white' : '#9e9fa3',
+                color: location.pathname === item.link ? 'white' : location.pathname === '/classroom/active-path' ? 'white' : '#9e9fa3',
                 textTransform: "none",
-                borderBottom: location.pathname === item.link ? '2px solid #2469bc' : 'none',
+                borderBottom: location.pathname === item.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? "2px solid #2469bc" : "none",
                 borderBottomRightRadius: "10px",
                 borderBottomLeftRadius: "10px",
                 ":hover": {
@@ -190,10 +189,10 @@ const AppBarComp = (props: Props) => {
                 key={index}
                 onClick={() => navigate(item.link)}
                 sx={{
-                  color: location.pathname === item.link ? "white" : "#9e9fa3",
+                  color: location.pathname === item.link ? 'white' : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? 'white' : '#9e9fa3',
                   textTransform: "none",
                   fontSize: "11px",
-                  borderBottom: location.pathname === item.link ? "2px solid #2469bc" : "none",
+                  borderBottom: location.pathname === item.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? "2px solid #2469bc" : "none",
                   fontWeight: "bold",
                   ":hover": {
                     background: "none",

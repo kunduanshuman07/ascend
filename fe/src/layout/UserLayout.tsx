@@ -9,6 +9,7 @@ import LeaderboardPage from '../pages/LeaderboardPage';
 import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
 import FooterComp from '../components/FooterComp';
+import ActivePathPage from '../pages/ActivePathPage';
 
 
 const UserLayout = () => {
@@ -21,13 +22,14 @@ const UserLayout = () => {
             <Route path='/' element={<HomePage />} />
             <Route path='/skills' element={<SkillPage />} />
             <Route path='/classroom' element={<ClassroomPage />} />
+            <Route path='/classroom/active-path' element={<ActivePathPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/leaderboard' element={<LeaderboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
           </Routes>
         </div>
       </Box>
-      <FooterComp/>
+      <FooterComp />
     </div>
   );
 }

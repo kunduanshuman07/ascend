@@ -78,7 +78,7 @@ const SkillTestDialog = (props: SkillTestDialogProps) => {
         </Typography>
 
         <Typography sx={{ textAlign: "center", marginTop: "20px", color: "#73777d", fontSize: "14px", fontWeight: "bold" }}>Take a test to build your Learning Path</Typography>
-        <AscendButtonComp text={'Begin Test'} handleClick={handleBeginTest} styles={{ marginY: "10px", marginX: "auto", paddingX: "20px", borderRadius: "10px" }} />
+        <AscendButtonComp text={'Begin Test'} handleClick={handleBeginTest} styles={{ marginY: "10px", marginX: "auto", paddingX: "20px"}} />
       </DialogContent>
     </Dialog>
   )

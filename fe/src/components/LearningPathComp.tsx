@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, LinearProgress, Card, Collapse, Fade, Button } from '@mui/material';
+import { Box, Typography, LinearProgress, Card, Collapse, Fade } from '@mui/material';
 import Grid from "@mui/material/Grid2";
-import RightArrowIcon from "@mui/icons-material/ArrowRight"
+import { useNavigate } from 'react-router-dom';
+import AscendButtonComp from './AscendButtonComp';
 
 const LearningPathComp = () => {
+  const navigate = useNavigate();
   const progress = 75;
   const badgeProgress: any = {
     basic: true,
@@ -37,45 +39,7 @@ const LearningPathComp = () => {
           <Typography variant="h5" sx={{ color: 'whitesmoke', fontSize: "20px", marginY: "auto" }}>
             Active Learning Path: ReactJS
           </Typography>
-          <Button
-            endIcon={<RightArrowIcon />}
-            variant="contained"
-            sx={{
-              backgroundColor: '#007bff',
-              color: 'whitesmoke',
-              fontSize: { md: '10px', xs: '8px' },
-              fontWeight: 'bold',
-              textTransform: 'capitalize',
-              padding: "5px 20px",
-              borderRadius: '30px',
-              boxShadow: '0 4px 10px rgba(0, 123, 255, 0.5)',
-              position: 'relative',
-              overflow: 'hidden',
-              marginLeft: "auto",
-              transition: 'all 0.3s ease-in-out',
-              '&:hover': {
-                backgroundColor: '#0056b3',
-                boxShadow: '0 6px 15px rgba(0, 86, 179, 0.7)',
-              },
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2))',
-                top: 0,
-                left: '-100%',
-                zIndex: 1,
-                transition: 'all 0.5s ease',
-                borderRadius: '30px',
-              },
-              '&:hover::after': {
-                left: '100%',
-              },
-            }}
-          >
-            Start Learning
-          </Button>
+          <AscendButtonComp text={'Start Learning'} handleClick={() => navigate('/classroom/active-path')} />
         </Box>
       </Fade>
       <Collapse in={showContent} timeout={1000}>
@@ -147,7 +111,7 @@ const LearningPathComp = () => {
                       <Typography variant="h6" sx={{ textTransform: 'capitalize' }}>
                         {badge}
                       </Typography>
-                      <Typography variant="body1" sx={{fontWeight: "bold"}}>
+                      <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                         {badgeProgress[badge] ? 'Earned 🏆' : 'Not Earned'}
                       </Typography>
                     </Box>
@@ -194,7 +158,7 @@ const LearningPathComp = () => {
                 }}
               >
                 <Typography variant="h6">Learning Hours Spent</Typography>
-                <Typography variant="h5" sx={{fontWeight: "bold"}}>{totalLearningHours} hrs</Typography>
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>{totalLearningHours} hrs</Typography>
               </Box>
             </Card>
           </Grid>
@@ -231,8 +195,8 @@ const LearningPathComp = () => {
                 }}
               >
                 <Typography variant="h6">Modules Completed</Typography>
-                <Typography variant="h5" sx={{fontWeight: "bold"}}>
-                  {modulesCompleted} <span style={{fontSize: "16px"}}>out of</span> {totalModules}
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  {modulesCompleted} <span style={{ fontSize: "16px" }}>out of</span> {totalModules}
                 </Typography>
               </Box>
             </Card>
