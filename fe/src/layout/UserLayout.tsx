@@ -15,7 +15,7 @@ const UserLayout = () => {
   return (
     <div>
       <AppBarComp />
-      <Box component="main" sx={{ width: "100%", mt: { xs: "50px", md: "60px" } }}>
+      <Box component="main" sx={{ width: "100%", mt: "40px" }}>
         <div>
           <Routes>
             <Route path='/' element={<HomePage />} />

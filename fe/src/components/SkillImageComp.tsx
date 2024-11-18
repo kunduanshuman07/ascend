@@ -50,6 +50,9 @@ const SkillImageComp = (props: SkillImageCompProps) => {
                     left: "16px",
                     color: "white",
                     zIndex: 2,
+                    fontSize: { xs: "18px" },
+                    fontWeight: { xs: "bold" },
+                    textAlign: { xs: "left" }
                 }}
             >
                 {props.title}

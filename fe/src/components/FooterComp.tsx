@@ -20,7 +20,7 @@ const FooterComp = () => {
             <Box sx={{ backgroundColor: "#000000", padding: "10px", display: "flex" }}>
                 <Box sx={{ display: "flex", marginX: "auto" }}>
                     <Typography
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', cursor: "pointer", color: "white", fontSize: "20px", marginRight: "20px" } }}
+                        sx={{ flexGrow: 1, display: { cursor: "pointer", color: "white", fontSize: "20px", marginRight: "20px" } }}
                     >
                         Powered by
                     </Typography>
@@ -30,12 +30,12 @@ const FooterComp = () => {
                         alt='logo'
                         width={30}
                         height={30}
-                        sx={{ display: { xs: 'none', sm: 'block', cursor: "pointer" } }}
+                        sx={{ display: { cursor: "pointer" } }}
                     />
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', cursor: "pointer", color: "white" } }}
+                        sx={{ flexGrow: 1, display: { cursor: "pointer", color: "white" } }}
                     >
                         ascend
                     </Typography>

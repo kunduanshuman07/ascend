@@ -1,8 +1,11 @@
 import React from 'react'
+import WrapperComp from '../components/WrapperComp'
 
 const ProfilePage = () => {
   return (
-    <div>ProfilePage</div>
+    <WrapperComp title={'ClassroomPage'}>
+      <div></div>
+    </WrapperComp>
   )
 }
 

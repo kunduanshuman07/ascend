@@ -1,8 +1,11 @@
 import React from 'react'
+import WrapperComp from '../components/WrapperComp'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <WrapperComp title={'ClassroomPage'}>
+      <div></div>
+    </WrapperComp>
   )
 }
 

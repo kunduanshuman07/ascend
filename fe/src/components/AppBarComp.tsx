@@ -56,9 +56,23 @@ const AppBarComp = (props: Props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', background: "#000000", height: "100vh" }}>
-      <Typography variant="h6" sx={{ my: 2, color: "white" }}>
-        ascend
-      </Typography>
+      <Box sx={{ display: "flex", mt: "10px" }}>
+        <Box
+          component="img"
+          src="/assets/ascend.svg"
+          alt="logo"
+          width={30}
+          height={30}
+          sx={{
+            display: { sm: "block", cursor: "pointer" },
+            marginLeft: "auto",
+            marginY: "auto"
+          }}
+        />
+        <Typography variant="h6" sx={{ my: "auto", color: "white", marginRight: "auto", fontSize: "18px" }}>
+          ascend
+        </Typography>
+      </Box>
       <Divider />
       <List>
         {navItems.map((item, index) => (
@@ -66,9 +80,12 @@ const AppBarComp = (props: Props) => {
             <ListItemButton
               sx={{
                 textAlign: "center",
+                fontSize: "10px",
                 color: location.pathname === item.link ? 'white' : '#9e9fa3',
                 textTransform: "none",
                 borderBottom: location.pathname === item.link ? '2px solid #2469bc' : 'none',
+                borderBottomRightRadius: "10px",
+                borderBottomLeftRadius: "10px",
                 ":hover": {
                   background: "none",
                   color: "white"
@@ -89,57 +106,95 @@ const AppBarComp = (props: Props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ background: "#000000" }} position="fixed">
-        <Toolbar>
+      <AppBar
+        component="nav"
+        sx={{
+          background: "#000000",
+          height: "40px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+        position="fixed"
+      >
+        <Toolbar
+          disableGutters
+          sx={{
+            height: "40px", // Ensure Toolbar height matches AppBar height
+            minHeight: "40px", // Override default minHeight
+            display: "flex",
+            alignItems: "center", // Vertically center content
+            justifyContent: "space-between", // Space content evenly
+            padding: "0 16px", // Adjust horizontal padding as needed
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{
+              display: { sm: "none" },
+              height: "100%",
+            }}
           >
             <MenuIcon />
           </IconButton>
           <Box
             component="img"
-            src='/assets/ascend.svg'
-            alt='logo'
+            src="/assets/ascend.svg"
+            alt="logo"
             width={30}
             height={30}
-            sx={{ display: { xs: 'none', sm: 'block', cursor: "pointer" } }}
-            onClick={() => navigate("/")}
+            sx={{
+              display: { xs: "none", sm: "block", cursor: "pointer" },
+              marginY: "auto",
+              marginLeft: "20px"
+            }}
           />
           <Typography
             variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', cursor: "pointer" } }}
+            sx={{
+              flexGrow: 1,
+              fontSize: "18px",
+              display: { xs: "none", sm: "block", cursor: "pointer" },
+            }}
             onClick={() => navigate("/")}
           >
             ascend
           </Typography>
-          {location.pathname === "/skills" && <TextField variant='standard' placeholder='Search Skills' size='small'
+          {location.pathname === "/skills" && (
+            <TextField
+              variant="standard"
+              placeholder="Search Skills"
+              size="small"
+              sx={{
+                marginRight: { md: "30px" },
+                input: {
+                  color: "white",
+                  borderBottom: "2px solid #9e9fa3",
+                  fontSize: "0.7em",
+                },
+                "input:before": {
+                  borderBottom: "2px solid #9e9fa3",
+                },
+              }}
+            />
+          )}
+          <Box
             sx={{
-              marginRight: "30px",
-              ".css-5h82ro-MuiInputBase-root-MuiInput-root": {
-                color: "white",
-                borderBottom: "1px solid #9e9fa3",
-                fontSize: "0.8em"
-
-              },
-              ".css-5h82ro-MuiInputBase-root-MuiInput-root::before": {
-                borderBottom: "1px solid #9e9fa3"
-              }
+              display: { xs: "none", sm: "block" },
             }}
-          />}
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          >
             {navItems.map((item, index) => (
               <Button
                 key={index}
                 onClick={() => navigate(item.link)}
                 sx={{
-                  color: location.pathname === item.link ? 'white' : '#9e9fa3',
+                  color: location.pathname === item.link ? "white" : "#9e9fa3",
                   textTransform: "none",
-                  borderBottom: location.pathname === item.link ? '2px solid #2469bc' : 'none',
+                  fontSize: "11px",
+                  borderBottom: location.pathname === item.link ? "2px solid #2469bc" : "none",
+                  fontWeight: "bold",
                   ":hover": {
                     background: "none",
                     color: "white",
@@ -152,6 +207,8 @@ const AppBarComp = (props: Props) => {
           </Box>
         </Toolbar>
       </AppBar>
+
+
       <nav>
         <Drawer
           container={container}

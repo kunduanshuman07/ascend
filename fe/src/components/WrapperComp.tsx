@@ -9,7 +9,7 @@ interface WrapperCompProps {
 
 const WrapperComp = (props: WrapperCompProps) => {
     return (
-        <Container sx={{ padding: "20px 5px", display: "flex", flexDirection: "column", minHeight: "90vh"}}>
+        <Container sx={{ padding: "20px 5px", display: "flex", flexDirection: "column", minHeight: "90vh" }}>
             {props.children}
         </Container>
     )
