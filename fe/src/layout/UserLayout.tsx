@@ -8,13 +8,14 @@ import DashboardPage from '../pages/DashboardPage';
 import LeaderboardPage from '../pages/LeaderboardPage';
 import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
+import FooterComp from '../components/FooterComp';
 
 
 const UserLayout = () => {
   return (
     <div>
       <AppBarComp />
-      <Box component="main" sx={{ width: "100%", mt: { xs: "45px", md: "60px" } }}>
+      <Box component="main" sx={{ width: "100%", mt: { xs: "50px", md: "60px" } }}>
         <div>
           <Routes>
             <Route path='/' element={<HomePage />} />
@@ -26,6 +27,7 @@ const UserLayout = () => {
           </Routes>
         </div>
       </Box>
+      <FooterComp/>
     </div>
   );
 }

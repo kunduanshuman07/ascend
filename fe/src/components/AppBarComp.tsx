@@ -14,6 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 interface Props {
   window?: () => Window;
@@ -65,7 +66,7 @@ const AppBarComp = (props: Props) => {
             <ListItemButton
               sx={{
                 textAlign: "center",
-                color: location.pathname === item.link ? 'white' : '#9e9fa3', 
+                color: location.pathname === item.link ? 'white' : '#9e9fa3',
                 textTransform: "none",
                 borderBottom: location.pathname === item.link ? '2px solid #2469bc' : 'none',
                 ":hover": {
@@ -116,6 +117,20 @@ const AppBarComp = (props: Props) => {
           >
             ascend
           </Typography>
+          {location.pathname === "/skills" && <TextField variant='standard' placeholder='Search Skills' size='small'
+            sx={{
+              marginRight: "30px",
+              ".css-5h82ro-MuiInputBase-root-MuiInput-root": {
+                color: "white",
+                borderBottom: "1px solid #9e9fa3",
+                fontSize: "0.8em"
+
+              },
+              ".css-5h82ro-MuiInputBase-root-MuiInput-root::before": {
+                borderBottom: "1px solid #9e9fa3"
+              }
+            }}
+          />}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item, index) => (
               <Button

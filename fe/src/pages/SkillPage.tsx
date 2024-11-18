@@ -37,16 +37,16 @@ const SkillPage = () => {
   }
 
   return (
-    <Box sx={{ background: "#1e2222", padding: "20px", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Grid container spacing={2} columns={{ xs: 2, md: 12 }}>
-        {skillItems.slice(0, showAllSkills ? skillItems.length : 5).map((skill, index) => (
+    <Box sx={{ background: "#1e2222", padding: "20px", display: "flex", flexDirection: "column" }}>
+      <Grid container spacing={3} columns={{ xs: 2, md: 12 }}>
+        {skillItems.slice(0, showAllSkills ? skillItems.length : 10).map((skill, index) => (
           <Grid size={{ xs: 1, md: 2.4 }} key={index} onClick={() => handleSkillClick(skill.title)}>
             <SkillImageComp title={skill.title} imageUrl={`/assets/${skill.title}.jpg`} />
           </Grid>
         ))}
       </Grid>
 
-      {!showAllSkills && (
+      {!showAllSkills && skillItems.length!== 10 && (
         <Button
           endIcon={<ArrowDownIcon />}
           onClick={handleLoadMore}
@@ -54,10 +54,15 @@ const SkillPage = () => {
             marginX: "auto",
             padding: "5px 20px",
             mt: { xs: "20px", md: "60px" },
-            backgroundColor: "white",
+            backgroundColor: "#1e2222",
+            border: "1px solid white",
             textTransform: "none",
-            color: "#000000",
-            '&:hover': { backgroundColor: "#ededed" },
+            color: "white",
+            borderRadius: "20px",
+            '&:hover': {
+              backgroundColor: "white",
+              color: "#1e2222"
+            },
           }}
         >
           Load More Skills
