@@ -3,7 +3,7 @@ import WrapperComp from '../components/WrapperComp'
 
 const HomePage = () => {
   return (
-    <WrapperComp title={'ClassroomPage'}>
+    <WrapperComp title={'HomePage'}>
       <div></div>
     </WrapperComp>
   )

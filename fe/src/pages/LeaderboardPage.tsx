@@ -3,7 +3,7 @@ import WrapperComp from '../components/WrapperComp'
 
 const LeaderboardPage = () => {
   return (
-    <WrapperComp title={'ClassroomPage'}>
+    <WrapperComp title={'Leaderboard'}>
     <div></div>
   </WrapperComp>
   )
