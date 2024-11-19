@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import SkillPage from '../pages/SkillPage';
 import ClassroomPage from '../pages/ClassroomPage';
 import DashboardPage from '../pages/DashboardPage';
-import LeaderboardPage from '../pages/LeaderboardPage';
 import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
 import FooterComp from '../components/FooterComp';
@@ -24,7 +23,6 @@ const UserLayout = () => {
             <Route path='/classroom' element={<ClassroomPage />} />
             <Route path='/classroom/active-path' element={<ActivePathPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
-            <Route path='/leaderboard' element={<LeaderboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
           </Routes>
         </div>

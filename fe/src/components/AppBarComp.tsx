@@ -35,10 +35,6 @@ const navItems = [
     name: "Dashboard"
   },
   {
-    link: "/leaderboard",
-    name: "Leaderboard"
-  },
-  {
     link: "/profile",
     name: "Profile"
   },
