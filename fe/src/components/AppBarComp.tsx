@@ -38,6 +38,10 @@ const navItems = [
     link: "/profile",
     name: "Profile"
   },
+  {
+    link: "/signin",
+    name: "SignIn"
+  },
 ];
 
 const AppBarComp = (props: Props) => {
