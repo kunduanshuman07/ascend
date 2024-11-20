@@ -9,6 +9,7 @@ import ProfilePage from '../pages/ProfilePage';
 import HomePage from '../pages/HomePage';
 import FooterComp from '../components/FooterComp';
 import ActivePathPage from '../pages/ActivePathPage';
+import SignInPage from '../pages/SignInPage';
 
 
 const UserLayout = () => {
@@ -24,6 +25,7 @@ const UserLayout = () => {
             <Route path='/classroom/active-path' element={<ActivePathPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/signin' element={<SignInPage/>}/>
           </Routes>
         </div>
       </Box>
