@@ -1,16 +1,36 @@
-import { Box, IconButton, Typography } from '@mui/material'
-import React from 'react'
+import { Alert, Backdrop, Box, CircularProgress, IconButton, Snackbar, Typography } from '@mui/material'
+import React, { useState } from 'react'
 import AscendButtonComp from '../components/AscendButtonComp'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-interface AuthenticationCompProps{
+interface AuthenticationCompProps {
     type: Number;
 }
 
 const AuthenticationComp = (props: AuthenticationCompProps) => {
-    const handleSignIn = () => {
-
+    const [username, setusername] = useState<any>('');
+    const [password, setpassword] = useState<any>('');
+    const [loading, setloading] = useState<boolean>(false);
+    const [error, seterror] = useState<any>('');
+    const navigate = useNavigate();
+    const handleSignIn = async () => {
+        setloading(true);
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`, { username, password });
+            if (response?.status === 200) {
+                navigate('/skills');
+            }
+            else if (response.status === 201) {
+                seterror(response?.data?.errormsg);
+            }
+        } catch (error: any) {
+            seterror(error.message);
+        } finally {
+            setloading(false);
+        }
     }
     return (
         <Box sx={{ display: "flex", flexDirection: "column", background: "#000000", margin: "auto", padding: "10px 30px", borderRadius: "10px", width: { xs: "70%", md: "30%" } }}>
@@ -31,11 +51,15 @@ const AuthenticationComp = (props: AuthenticationCompProps) => {
 
             <input
                 type='text'
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 placeholder='Username or E-mail'
                 style={{ background: "#1e2222", border: "none", lineHeight: "30px", width: "200px", fontSize: "12px", padding: "5px 20px", borderRadius: "8px", color: "white", margin: "10px auto" }}
             />
             <input
                 type='password'
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
                 placeholder='Password'
                 style={{ background: "#1e2222", border: "none", lineHeight: "30px", width: "200px", fontSize: "12px", padding: "5px 20px", borderRadius: "8px", color: "white", margin: "10px auto" }}
             />
@@ -61,6 +85,22 @@ const AuthenticationComp = (props: AuthenticationCompProps) => {
                     <GoogleIcon />
                 </IconButton>
             </Box>
+            <Backdrop
+                sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+                open={loading}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            <Snackbar open={error !== ''} autoHideDuration={6000} onClose={() => seterror('')}>
+                <Alert
+                    onClose={() => seterror('')}
+                    severity="error"
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    {error}
+                </Alert>
+            </Snackbar>
         </Box>
     )
 }
