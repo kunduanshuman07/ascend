@@ -6,26 +6,24 @@ import SkillPage from '../pages/SkillPage';
 import ClassroomPage from '../pages/ClassroomPage';
 import DashboardPage from '../pages/DashboardPage';
 import ProfilePage from '../pages/ProfilePage';
-import HomePage from '../pages/HomePage';
 import FooterComp from '../components/FooterComp';
 import ActivePathPage from '../pages/ActivePathPage';
-import SignInPage from '../pages/SignInPage';
 
 
 const UserLayout = () => {
+  const user = localStorage.getItem("User");
+  console.log(user);
   return (
     <div>
       <AppBarComp />
       <Box component="main" sx={{ width: "100%", mt: "40px" }}>
         <div>
           <Routes>
-            <Route path='/' element={<HomePage />} />
             <Route path='/skills' element={<SkillPage />} />
             <Route path='/classroom' element={<ClassroomPage />} />
             <Route path='/classroom/active-path' element={<ActivePathPage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/signin' element={<SignInPage/>}/>
           </Routes>
         </div>
       </Box>

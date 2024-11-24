@@ -5,6 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthProvider';
 
 interface AuthenticationCompProps {
     type: Number;
@@ -15,13 +16,17 @@ const AuthenticationComp = (props: AuthenticationCompProps) => {
     const [password, setpassword] = useState<any>('');
     const [loading, setloading] = useState<boolean>(false);
     const [error, seterror] = useState<any>('');
+    const { setAuth } = useAuth();
     const navigate = useNavigate();
     const handleSignIn = async () => {
         setloading(true);
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`, { username, password });
             if (response?.status === 200) {
+                localStorage.setItem("User", response?.data);
+                setAuth(true)
                 navigate('/skills');
+
             }
             else if (response.status === 201) {
                 seterror(response?.data?.errormsg);

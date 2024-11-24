@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { TextField } from '@mui/material';
+import { useAuth } from '../context/AuthProvider';
 
 interface Props {
   window?: () => Window;
@@ -39,16 +40,29 @@ const navItems = [
     name: "Profile"
   },
   {
-    link: "/signin",
-    name: "SignIn"
+    link: "",
+    name: "Signout"
   },
 ];
 
 const AppBarComp = (props: Props) => {
   const { window } = props;
-  const navigate = useNavigate();
-  const location = useLocation(); // Get the current location
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { setAuth } = useAuth();
+  
+  const handleTabClick = (name: any, link: any) => {
+    if (name === "Signout") {
+      localStorage.removeItem("User");
+      setAuth(false);
+      navigate("/");
+    }
+    else {
+      navigate(link);
+    }
+  }
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -74,15 +88,15 @@ const AppBarComp = (props: Props) => {
       </Box>
       <Divider />
       <List>
-        {navItems.map((item, index) => (
+        {navItems?.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton
               sx={{
                 textAlign: "center",
                 fontSize: "10px",
-                color: location.pathname === item.link ? 'white' : location.pathname === '/classroom/active-path' ? 'white' : '#9e9fa3',
+                color: location.pathname === item?.link ? 'white' : location.pathname === '/classroom/active-path' ? 'white' : '#9e9fa3',
                 textTransform: "none",
-                borderBottom: location.pathname === item.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? "2px solid #2469bc" : "none",
+                borderBottom: location.pathname === item?.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item?.name === 'Classroom' ? "2px solid #2469bc" : "none",
                 borderBottomRightRadius: "10px",
                 borderBottomLeftRadius: "10px",
                 ":hover": {
@@ -90,9 +104,9 @@ const AppBarComp = (props: Props) => {
                   color: "white"
                 },
               }}
-              onClick={() => navigate(item.link)}
+              onClick={() => handleTabClick(item?.name, item?.link)}
             >
-              <ListItemText primary={item.name} />
+              <ListItemText primary={item?.name} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -157,7 +171,7 @@ const AppBarComp = (props: Props) => {
               fontSize: "18px",
               display: { xs: "none", sm: "block", cursor: "pointer" },
             }}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/skills")}
           >
             ascend
           </Typography>
@@ -184,15 +198,15 @@ const AppBarComp = (props: Props) => {
               display: { xs: "none", sm: "block" },
             }}
           >
-            {navItems.map((item, index) => (
+            {navItems?.map((item, index) => (
               <Button
                 key={index}
-                onClick={() => navigate(item.link)}
+                onClick={() => handleTabClick(item?.name, item?.link)}
                 sx={{
-                  color: location.pathname === item.link ? 'white' : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? 'white' : '#9e9fa3',
+                  color: location.pathname === item?.link ? 'white' : location.pathname === '/classroom/active-path' && item?.name === 'Classroom' ? 'white' : '#9e9fa3',
                   textTransform: "none",
                   fontSize: "11px",
-                  borderBottom: location.pathname === item.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item.name === 'Classroom' ? "2px solid #2469bc" : "none",
+                  borderBottom: location.pathname === item?.link ? "2px solid #2469bc" : location.pathname === '/classroom/active-path' && item?.name === 'Classroom' ? "2px solid #2469bc" : "none",
                   fontWeight: "bold",
                   ":hover": {
                     background: "none",
@@ -200,7 +214,7 @@ const AppBarComp = (props: Props) => {
                   },
                 }}
               >
-                {item.name}
+                {item?.name}
               </Button>
             ))}
           </Box>

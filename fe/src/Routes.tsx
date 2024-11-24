@@ -1,13 +1,25 @@
-import React from 'react'
-import { Routes, Route } from "react-router-dom";
+import React, { Suspense } from 'react'
+import { Routes, Route, Navigate } from "react-router-dom";
 import UserLayout from './layout/UserLayout';
+import SignInPage from './pages/SignInPage';
+import { useAuth } from './context/AuthProvider';
+import { LinearProgress } from '@mui/material';
 
 const RoutesJS = () => {
+    const { auth } = useAuth();
     return (
         <Routes>
             <Route
                 path='/*'
-                element={<UserLayout />}
+                element={
+                    <Suspense fallback={<LinearProgress color='info' />}>
+                        {auth ? <UserLayout /> : <Navigate to="/signin" replace />}
+                    </Suspense>
+                }
+            />
+            <Route
+                path='/signin'
+                element={<SignInPage />}
             />
         </Routes>
     )

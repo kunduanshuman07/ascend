@@ -11,7 +11,7 @@ export const signin = async (req, res) => {
             return res.status(201).send({errormsg: 'Invalid Credentials'});
         }
         logger.success();
-        res.status(200).send();
+        res.status(200).send({user: username});
     } catch (error) {
         logger.error(error.message);
         res.status(500).send(error.message);
