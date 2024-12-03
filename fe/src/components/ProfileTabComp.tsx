@@ -7,6 +7,9 @@ import ProfileExpComp from './ProfileExpComp';
 import ProfileSocialComp from './ProfileSocialComp';
 import ProfileAccountComp from './ProfileAccountComp';
 
+interface ProfileTabCompProps{
+    data: any;
+}
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -36,7 +39,7 @@ function a11yProps(index: number) {
     };
 }
 
-const ProfileTabComp = () => {
+const ProfileTabComp = (props: ProfileTabCompProps) => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -54,16 +57,16 @@ const ProfileTabComp = () => {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-              <ProfileBasicInfoComp/>
+              <ProfileBasicInfoComp data={props.data}/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-              <ProfileExpComp/>
+              <ProfileExpComp data={props.data}/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-              <ProfileSocialComp/>
+              <ProfileSocialComp data={props.data}/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={3}>
-              <ProfileAccountComp/>
+              <ProfileAccountComp data={props.data}/>
             </CustomTabPanel>
         </Box>
     );

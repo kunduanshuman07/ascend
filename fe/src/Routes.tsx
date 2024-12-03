@@ -4,6 +4,7 @@ import UserLayout from './layout/UserLayout';
 import SignInPage from './pages/SignInPage';
 import { useAuth } from './context/AuthProvider';
 import { LinearProgress } from '@mui/material';
+import SignUpPage from './pages/SignUpPage';
 
 const RoutesJS = () => {
     const { auth } = useAuth();
@@ -20,6 +21,10 @@ const RoutesJS = () => {
             <Route
                 path='/signin'
                 element={<SignInPage />}
+            />
+            <Route
+                path='/signup'
+                element={<SignUpPage />}
             />
         </Routes>
     )

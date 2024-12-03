@@ -3,7 +3,6 @@ import React from 'react'
 
 interface SkillImageCompProps {
     title: String;
-    imageUrl: String;
 }
 
 const SkillImageComp = (props: SkillImageCompProps) => {
@@ -12,7 +11,7 @@ const SkillImageComp = (props: SkillImageCompProps) => {
             sx={{
                 position: "relative",
                 height: "200px",
-                backgroundImage: `url(${props.imageUrl})`,
+                backgroundImage: `url(/assets/skill.jpg)`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 borderRadius: "10px",

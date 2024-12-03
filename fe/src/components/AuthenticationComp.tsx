@@ -23,12 +23,12 @@ const AuthenticationComp = (props: AuthenticationCompProps) => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`, { username, password });
             if (response?.status === 200) {
-                localStorage.setItem("User", response?.data);
+                localStorage.setItem("User", JSON.stringify(response?.data));
                 setAuth(true)
                 navigate('/skills');
 
             }
-            else if (response.status === 201) {
+            else {
                 seterror(response?.data?.errormsg);
             }
         } catch (error: any) {
@@ -79,7 +79,7 @@ const AuthenticationComp = (props: AuthenticationCompProps) => {
                     fontWeight: "bold", fontSize: "10px", color: "white", marginLeft: "auto", cursor: "pointer", ":hover": {
                         color: "#2469bc"
                     }
-                }}>SignUp</Typography>
+                }} onClick={() => navigate('/signup')}>SignUp</Typography>
             </Box>
             <Typography sx={{ fontWeight: "bold", fontSize: "12px", color: "#9e9fa3", margin: '20px auto 5px auto', cursor: "pointer" }}>or you can sign in with</Typography>
             <Box sx={{ display: "flex", margin: "auto" }}>

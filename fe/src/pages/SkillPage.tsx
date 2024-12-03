@@ -5,31 +5,21 @@ import SkillImageComp from '../components/SkillImageComp'
 import SkillTestDialog from '../components/SkillTestDialog'
 import ArrowDownIcon from "@mui/icons-material/ArrowDownward"
 import WrapperComp from '../components/WrapperComp'
-
-const skillItems = [
-  { id: 1, title: 'ReactJS' },
-  { id: 2, title: 'NodeJS' },
-  { id: 3, title: 'Sql' },
-  { id: 4, title: 'Python' },
-  { id: 5, title: 'DataAnalytics' },
-  { id: 6, title: 'Java' },
-  { id: 7, title: 'C++' },
-  { id: 8, title: 'Go' },
-  { id: 9, title: 'Ruby' },
-  { id: 10, title: 'Rust' },
-]
+import useFetch from '../hooks/useFetch'
 
 const SkillPage = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [dialogContent, setDialogContent] = useState('ReactJS');
+  const [dialogContent, setDialogContent] = useState('');
+  const [dialogTitle, setDialogTitle] = useState('');
   const [showAllSkills, setShowAllSkills] = useState(false);
 
   const handleClose = () => {
     setDialogOpen(false);
   }
 
-  const handleSkillClick = (skillTitle: string) => {
-    setDialogContent(skillTitle);
+  const handleSkillClick = (skillTitle: string, skillContent: string) => {
+    setDialogContent(skillContent);
+    setDialogTitle(skillTitle);
     setDialogOpen(true);
   }
 
@@ -37,18 +27,22 @@ const SkillPage = () => {
     setShowAllSkills(true);
   }
 
+  const { data, error, loading } = useFetch({
+    url: `${process.env.REACT_APP_API_URL}/skills/fetch-skills`,
+  });
+
   return (
-    <WrapperComp title={'Explore Skills'}>
+    <WrapperComp title={'Explore Skills'} loading={loading} error={error} noData={data?.length === 0}>
       <Box sx={{ background: "#1e2222", padding: "20px", display: "flex", flexDirection: "column" }}>
         <Grid container spacing={3} columns={{ xs: 2, md: 12 }}>
-          {skillItems.slice(0, showAllSkills ? skillItems.length : 10).map((skill, index) => (
-            <Grid size={{ xs: 1, md: 2.4 }} key={index} onClick={() => handleSkillClick(skill.title)}>
-              <SkillImageComp title={skill.title} imageUrl={`/assets/${skill.title}.jpg`} />
+          {data?.skills?.slice(0, showAllSkills ? data?.skills?.length : 10).map((skill: any, index: any) => (
+            <Grid size={{ xs: 1, md: 2.4 }} key={index} onClick={() => handleSkillClick(skill?.name, skill?.sd)}>
+              <SkillImageComp title={skill?.name} />
             </Grid>
           ))}
         </Grid>
 
-        {!showAllSkills && skillItems.length !== 10 && (
+        {!showAllSkills && data?.skills?.length !== 10 && (
           <Button
             endIcon={<ArrowDownIcon />}
             onClick={handleLoadMore}
@@ -71,7 +65,7 @@ const SkillPage = () => {
           </Button>
         )}
 
-        <SkillTestDialog dialogOpen={dialogOpen} dialogContent={dialogContent} handleClose={handleClose} />
+        <SkillTestDialog dialogOpen={dialogOpen} dialogContent={dialogContent} handleClose={handleClose} dialogTitle={dialogTitle} />
       </Box>
     </WrapperComp>
   )

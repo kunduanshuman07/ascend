@@ -3,7 +3,11 @@ import Grid from "@mui/material/Grid2";
 import ProfileGridComp from './ProfileGridComp';
 import AscendButtonComp from './AscendButtonComp';
 
-const ProfileAccountComp = () => {
+interface InfoProps{
+    data: any;
+}
+
+const ProfileAccountComp = (props: InfoProps) => {
     const handleDeleteAccount = () => {
 
     }

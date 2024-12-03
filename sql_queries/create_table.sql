@@ -2,7 +2,7 @@ create table users  (
 	id int primary key auto_increment,
     email varchar(50) unique,
     username varchar(50) unique,
-    password varchar(50) unique,
+    password varchar(50),
     name varchar(50),
     gender varchar(10),
     location varchar(50),
@@ -22,7 +22,8 @@ create table skills (
 	id int primary key auto_increment,
     name varchar(50) unique,
     modules int not null,
-    hours int not null
+    hours int not null,
+    sd text not null
 );
 
 create table tests(

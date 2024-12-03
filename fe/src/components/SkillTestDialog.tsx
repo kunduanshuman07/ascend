@@ -7,6 +7,7 @@ import CodeIcon from '@mui/icons-material/Code';
 interface SkillTestDialogProps {
   dialogOpen: boolean;
   dialogContent: String;
+  dialogTitle: String;
   handleClose: () => any;
 }
 const SkillTestDialog = (props: SkillTestDialogProps) => {
@@ -33,7 +34,7 @@ const SkillTestDialog = (props: SkillTestDialogProps) => {
         <IconButton sx={{ marginY: "auto", color: '#0c325e' }}>
           <CodeIcon />
         </IconButton>
-        <Typography variant='h5' sx={{ marginY: "auto", color: "#0c325e", fontWeight: "bold" }}>{props.dialogContent}</Typography>
+        <Typography variant='h5' sx={{ marginY: "auto", color: "#0c325e", fontWeight: "bold" }}>{props.dialogTitle}</Typography>
         <IconButton sx={{ marginLeft: "auto", marginY: "auto", color: "#0c325e" }} onClick={props.handleClose}>
           <CloseIcon />
         </IconButton>
@@ -72,9 +73,7 @@ const SkillTestDialog = (props: SkillTestDialogProps) => {
             },
           }}
         >
-          React is one of the most widely used libraries in web development, powering
-          over 10 million websites globally, including major platforms like Facebook,
-          Instagram, and Netflix.
+          {props.dialogContent}
         </Typography>
 
         <Typography sx={{ textAlign: "center", marginTop: "20px", color: "#73777d", fontSize: "14px", fontWeight: "bold" }}>Take a test to build your Learning Path</Typography>
