@@ -1,6 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from "@mui/material/Grid2"
+import axios from 'axios';
 
 interface ProfileGridCompProps {
     title: any;
@@ -9,10 +10,30 @@ interface ProfileGridCompProps {
 }
 
 const ProfileGridComp = (props: ProfileGridCompProps) => {
+    const user = JSON.parse(localStorage.getItem("User") || '{}')
     const [edit, setedit] = useState<boolean>(false);
-    const handleSave = () => {
+    const [field, setfield] = useState<any>(props.title);
+    const [value, setvalue] = useState<any>(props.data || '')
+    const handleTextEdit = (e: any) => {
+        setvalue(e.target.value);
+        setfield(props.title);
+    }
+    const handleSave = async () => {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/profile/update-profile`, { username: user?.user, value: value, field: field });
+        if (response?.status === 200) {
+            setedit(false);
+        }
+        else {
+            setedit(false);
+            setvalue(props?.data);
+        }
 
     }
+    useEffect(() => {
+        setvalue(props?.data);
+        setedit(false);
+        setfield(props?.title);
+    }, [props])
     return (
         <>
             <Grid size={{ md: 3 }} sx={{ margin: "auto", padding: "0px 10px" }}>
@@ -23,6 +44,8 @@ const ProfileGridComp = (props: ProfileGridCompProps) => {
                     <TextField
                         variant="standard"
                         placeholder={props.title}
+                        value={value}
+                        onChange={(e) => handleTextEdit(e)}
                         size="medium"
                         sx={{
                             marginRight: { md: "30px" },
@@ -36,7 +59,12 @@ const ProfileGridComp = (props: ProfileGridCompProps) => {
                             },
                         }}
                     /> :
-                    <Typography sx={{ color: "white", fontSize: "12px" }}>{props.data}</Typography>
+
+                    props.action === 'Connect' ?
+                        <a href={value} target='__blank' style={{ color: "skyblue", fontSize: "12px", cursor: "pointer", textDecoration: "none", fontWeight: "bold" }}>{value}</a> :
+                        <Typography sx={{ color: "#c0bef7", fontSize: "12px", fontWeight: "bold" }}>{value}</Typography>
+
+
                 }
             </Grid>
             <Grid size={{ md: 2 }} sx={{ padding: "0px 10px", display: "flex", margin: "auto" }}>

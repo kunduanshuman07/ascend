@@ -13,7 +13,7 @@ const ProfilePage = () => {
     body: { username: user?.user }
   });
   return (
-    <WrapperComp title={'Profile'}>
+    <WrapperComp title={'Profile'} error={error} loading={loading}>
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <ProfileHeaderComp name={data?.profile?.name} username={data?.profile?.username}/>
         <Box sx={{ display: "flex", marginTop: "10px", paddingX: "20px", width: "100%" }}>

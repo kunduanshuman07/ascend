@@ -6,7 +6,7 @@ create table users  (
     name varchar(50),
     gender varchar(10),
     location varchar(50),
-    birthday date,
+    birthday varchar(20),
     work varchar(50),
     education varchar(50),
     skills varchar(50),
