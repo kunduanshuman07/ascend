@@ -14,7 +14,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { TextField } from '@mui/material';
 import { useAuth } from '../context/AuthProvider';
 
 interface Props {
@@ -175,24 +174,6 @@ const AppBarComp = (props: Props) => {
           >
             ascend
           </Typography>
-          {location.pathname === "/skills" && (
-            <TextField
-              variant="standard"
-              placeholder="Search Skills"
-              size="small"
-              sx={{
-                marginRight: { md: "30px" },
-                input: {
-                  color: "white",
-                  borderBottom: "2px solid #9e9fa3",
-                  fontSize: "0.7em",
-                },
-                "input:before": {
-                  borderBottom: "2px solid #9e9fa3",
-                },
-              }}
-            />
-          )}
           <Box
             sx={{
               display: { xs: "none", sm: "block" },
