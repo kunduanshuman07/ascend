@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material'
 import AscendButtonComp from './AscendButtonComp';
 import CloseIcon from "@mui/icons-material/CloseFullscreenSharp";
 import CodeIcon from '@mui/icons-material/Code';
+import TestDialogComp from './TestDialogComp';
 
 interface SkillTestDialogProps {
   dialogOpen: boolean;
@@ -11,8 +12,14 @@ interface SkillTestDialogProps {
   handleClose: () => any;
 }
 const SkillTestDialog = (props: SkillTestDialogProps) => {
+  const [testdialog, settestdialog] = useState<boolean>(false);
+  const [testid, settestid] = useState<string>('');
   const handleBeginTest = () => {
-
+    settestdialog(true);
+    settestid('');
+  }
+  const handleTestDialogClose = () => {
+    settestdialog(false);
   }
   return (
     <Dialog
@@ -77,7 +84,8 @@ const SkillTestDialog = (props: SkillTestDialogProps) => {
         </Typography>
 
         <Typography sx={{ textAlign: "center", marginTop: "20px", color: "#73777d", fontSize: "14px", fontWeight: "bold" }}>Take a test to build your Learning Path</Typography>
-        <AscendButtonComp text={'Begin Test'} handleClick={handleBeginTest} styles={{ marginY: "10px", marginX: "auto", paddingX: "20px"}} />
+        <AscendButtonComp text={'Begin Test'} handleClick={handleBeginTest} styles={{ marginY: "10px", marginX: "auto", paddingX: "20px" }} />
+        <TestDialogComp dialogOpen={testdialog} testid={testid} handleClose={handleTestDialogClose} dialogTitle={'Test'} />
       </DialogContent>
     </Dialog>
   )

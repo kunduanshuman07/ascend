@@ -72,7 +72,7 @@ const SkillPage = () => {
           ))}
         </Grid>
 
-        {!showAllSkills && filteredData?.length !== 10 && (
+        {!showAllSkills && filteredData?.length >= 10 && (
           <Button
             endIcon={<ArrowDownIcon />}
             onClick={handleLoadMore}

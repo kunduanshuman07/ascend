@@ -23,7 +23,7 @@ const AscendButtonComp = (props: AscendButtonCompProps) => {
                 textTransform: 'capitalize',
                 padding: "5px 20px",
                 borderRadius: '30px',
-                boxShadow: '0 4px 10px rgba(0, 123, 255, 0.5)',
+                // boxShadow: '0 4px 10px rgba(0, 123, 255, 0.5)',
                 position: 'relative',
                 overflow: 'hidden',
                 marginLeft: "auto",
